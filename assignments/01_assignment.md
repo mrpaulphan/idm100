@@ -32,15 +32,13 @@ I want users to be able to comment on my recipes
 I want to connect my YouTube channel videos to my recipes
  
 
-**Slide 2: Business Website
-**
+**Slide 2: Business Website**
 Parents own a pizza show
 I want to build a website for them
 I want it to display the food menu, store hours, and a little about the family own business.
  
 
-**Slide 3: Online Course
-**
+**Slide 3: Online Course**
 I make tutorial videos online
 I want to create an online course
 Videos will be free
