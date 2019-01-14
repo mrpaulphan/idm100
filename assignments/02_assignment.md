@@ -46,6 +46,6 @@ You will be giving a short (3 minutes or less) presentation in class focused on 
 
 ## Submitting Work
 
-You will upload your primary asset file, preferably a MS PowerPoint file, to BBLearn prior to the assignment due date/time. If you need to upload more than one file, please zip the file and upload one file. Your file name should follow “idm100-hwk02s-[Drexel Username]" naming convention (idm100-hwk02s-pp455.zip). 
+You will upload your primary asset file, preferably a MS PowerPoint file, to BBLearn prior to the assignment due date/time. If you need to upload more than one file, please zip the file and upload one file. Your file name should follow `idm100-hwk02s-[Drexel Username].[File Extension]` naming convention (`idm100-hwk02s-pp455.zip`). 
 
 NOTE: Teaching station does have Keynote, however it is not the latest version of the program, and files created with newer versions of the software are not compatible and therefore will not open.
