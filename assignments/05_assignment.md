@@ -5,6 +5,8 @@ You will be submitting a link to your domain with the following:
 
 - Main Navigation enabled with a list of pages based off your previous site map assignment
 
+- Content on the homepage
+
 
 Submission
 Submit the full link to your website (http://{your domain here}.com). 

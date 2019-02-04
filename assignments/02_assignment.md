@@ -22,7 +22,7 @@ For this class, the basic plan should be perfectly fine with you. Feel free to c
 - Everything else is optional. Having those other packages don’t hurt you. They just help. 
 
 ## Site Inspiration Presentation 
-You will be giving a short (3 minutes or less) presentation in class focused on inspiration you can draw from on the web. Come to class with whatever presentation files and assets you need and be prepared to use the instructor's workstation computer to present your work to the class. You also have full access to the classroom whiteboard and can present your information in any way you prefer (e.g. printouts, drawings, PPT/Keynote etc.)
+You will be giving a short (3 minutes or less) presentation in class focused on inspiration you can draw from on the web. Come to class with whatever presentation files and assets you need and be prepared to use the instructor's workstation computer to present your work to the class. On your first slide, please remind the class what your final idea is.  You also have full access to the classroom whiteboard and can present your information in any way you prefer (e.g. printouts, drawings, PPT/Keynote etc.)
 
 **You will be graded on:**
 
