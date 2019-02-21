@@ -1,0 +1,11 @@
+//===========================
+//        Calculation
+//===========================
+
+@function rem($pixels, $context: 12px) {
+  @return ($pixels / $context) * 1rem;
+}
+
+@function line-height($font-size, $line-height) {
+  @return $line-height / $font-size;
+}

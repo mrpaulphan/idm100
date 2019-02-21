@@ -1,0 +1,719 @@
+{
+    "key": "group_5b9fc9ef281df",
+    "title": "Taxonomy Settings",
+    "fields": [
+        {
+            "key": "field_5bab80e915c90",
+            "label": "General",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5bab80f745bf9",
+            "label": "Breadcrumb",
+            "name": "general_archive_breadcrumb",
+            "type": "select",
+            "instructions": "Show or hide the breadcrumb of this archive.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Show",
+                "3": "Hide"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef37dfc",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5b9fc9ef37e1e",
+            "label": "Settings",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5b9fc9ef380c7",
+            "label": "Visibility",
+            "name": "hero_visibility",
+            "type": "select",
+            "instructions": "Show or hide the hero.\r\n<br \/>\r\n<small>Note: The default option is show.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Show",
+                "3": "Hide"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef381b8",
+            "label": "Height",
+            "name": "hero_height",
+            "type": "select",
+            "instructions": "Inherit the value of height from Theme Options or set it custom.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Custom"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef38207",
+            "label": "Custom Height",
+            "name": "hero_custom_height",
+            "type": "text",
+            "instructions": "Enter the height, do not forget to select the unit in the field below.\r\n<br \/>\r\n<small>Note: Do not forget to add the unit too, for example px\/vh\/rem\/em\/%.<\/small>",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b9fc9ef381b8",
+                        "operator": "==",
+                        "value": "2"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "500px",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5b9fc9ef38286",
+            "label": "Container",
+            "name": "hero_container",
+            "type": "select",
+            "instructions": "Select if you want the hero to be boxed in 1140px width or not.\r\n<br \/>\r\n<small>Note: The default option is on.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "On",
+                "3": "Off"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef38389",
+            "label": "Alignment",
+            "name": "hero_alignment",
+            "type": "select",
+            "instructions": "Select the text alignment of the hero. <br \/>\r\n<small>Note: The default option is left.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Left",
+                "3": "Center",
+                "4": "Right"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef383d3",
+            "label": "Image",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5b9fc9ef386ed",
+            "label": "Image",
+            "name": "hero_image",
+            "type": "select",
+            "instructions": "Select the image you want to display as hero background image. <br \/>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Use the theme default image",
+                "3": "Custom Image",
+                "4": "No Image"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef38a86",
+            "label": "Custom Image",
+            "name": "hero_custom_image",
+            "type": "image",
+            "instructions": "Select the custom image you want to display as hero background image.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b9fc9ef386ed",
+                        "operator": "==",
+                        "value": "3"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_5b9fc9ef38b0e",
+            "label": "Repeat",
+            "name": "hero_image_repeat",
+            "type": "select",
+            "instructions": "Select the image repeat settings. <br \/>\r\n<small>Note: The default option is no repeat.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "No Repeat",
+                "3": "Repeat All",
+                "4": "Repeat Horizontally",
+                "5": "Repeat Vertically"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef38b4f",
+            "label": "Attachment",
+            "name": "hero_image_attachment",
+            "type": "select",
+            "instructions": "Select the image attachment settings. <br \/>\r\n<small>Note: The default option is scroll.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Scroll",
+                "3": "Fixed",
+                "4": "Local"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef38bdd",
+            "label": "Position",
+            "name": "hero_image_position",
+            "type": "select",
+            "instructions": "Select the image position settings. <br \/>\r\n<small>Note: The default option is center center.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Left Top",
+                "3": "Left Center",
+                "4": "Left Bottom",
+                "5": "Center Top",
+                "6": "Center Center",
+                "7": "Center Bottom",
+                "8": "Right Top",
+                "9": "Right Center",
+                "10": "Right Bottom"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5c23a464721b0",
+            "label": "Size",
+            "name": "hero_image_size",
+            "type": "select",
+            "instructions": "Select the image size settings. <br \/>\r\n<small>Note: The default option is cover.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Auto",
+                "3": "Cover",
+                "4": "Contain",
+                "5": "Initial"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef38c17",
+            "label": "Overlay",
+            "name": "hero_image_overlay",
+            "type": "select",
+            "instructions": "Show an overlay for the background image. <br \/>\r\n<small>Note: The default option is hide.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Show",
+                "3": "Hide"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef38edc",
+            "label": "Overlay Opacity",
+            "name": "hero_image_overlay_opacity",
+            "type": "number",
+            "instructions": "Enter the number of overlay opacity, the number can be in range of 0 and 1.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b9fc9ef38c17",
+                        "operator": "==",
+                        "value": "2"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 0,
+            "max": 1,
+            "step": "0.01"
+        },
+        {
+            "key": "field_5b9fc9ef38f28",
+            "label": "Overlay Color",
+            "name": "hero_image_overlay_color",
+            "type": "color_picker",
+            "instructions": "Select the color of overlay.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b9fc9ef38c17",
+                        "operator": "==",
+                        "value": "2"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
+            "key": "field_5b9fc9ef3935e",
+            "label": "Title",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5b9fc9ef397c5",
+            "label": "Title",
+            "name": "hero_title",
+            "type": "select",
+            "instructions": "Select the title you want to display in the hero. <br \/>\r\n<small>Note: The default option is use this taxonomy title.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Use this taxonomy title",
+                "3": "Custom Title",
+                "4": "No Title"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b9fc9ef39c2c",
+            "label": "Custom Title",
+            "name": "hero_custom_title",
+            "type": "textarea",
+            "instructions": "Enter the title, it accepts html tags too.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b9fc9ef397c5",
+                        "operator": "==",
+                        "value": "3"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_5b9fc9ef39cb6",
+            "label": "Animation",
+            "name": "hero_title_animation",
+            "type": "select",
+            "instructions": "Select initial loading animation for the title. <br \/>\r\n<small>Note: The default option in Fade In.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "None",
+                "3": "Fade In",
+                "4": "Fade In Up"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5be08ce86ca55",
+            "label": "Color",
+            "name": "hero_title_color",
+            "type": "select",
+            "instructions": "Select the color of title. <br \/>\r\n<small>Note: The default option in #232931.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Custom"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5be08d201930a",
+            "label": "Custom Color",
+            "name": "hero_title_color_custom",
+            "type": "color_picker",
+            "instructions": "Select the custom color from the picker.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5be08ce86ca55",
+                        "operator": "==",
+                        "value": "2"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#232931"
+        },
+        {
+            "key": "field_5c40d285d0f9b",
+            "label": "Breadcrumb",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5c40d28bd0f9c",
+            "label": "Breadcrumb",
+            "name": "hero_breadcrumb",
+            "type": "select",
+            "instructions": "Show the breadcrumb on the hero.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Inherit",
+                "2": "Show",
+                "3": "Hide"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1547752160
+}

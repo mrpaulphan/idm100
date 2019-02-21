@@ -1,0 +1,47 @@
+/*==================================
+=        Elementor Nav Base        =
+==================================*/
+
+.m-nav-menu--mobile-holder {
+  display: none;
+}
+
+.m-nav-menu-breakpoint-no {
+  .m-nav-menu--mobile-holder {
+    display: none;
+  }
+}
+
+.m-nav-menu--breakpoint-yes {
+  &.m-nav-menu--breakpoint-desktop {
+    .m-nav-menu--holder {
+      display: none;
+    }
+
+    .m-nav-menu--mobile-holder {
+      display: block;
+    }
+  }
+
+  &.m-nav-menu--breakpoint-tablet {
+    @include breakpoint($xl - 1, max-width) {
+      .m-nav-menu--holder {
+        display: none;
+      }
+      .m-nav-menu--mobile-holder {
+        display: block;
+      }
+    }
+  }
+
+  &.m-nav-menu--breakpoint-mobile {
+    @include breakpoint($md - 1, max-width) {
+      .m-nav-menu--holder {
+        display: none;
+      }
+      .m-nav-menu--mobile-holder {
+        display: block;
+      }
+    }
+  }
+}

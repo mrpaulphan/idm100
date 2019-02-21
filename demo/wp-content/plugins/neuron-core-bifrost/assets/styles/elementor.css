@@ -1,0 +1,33 @@
+#elementor-panel-category-wordpress {
+  display: none !important;
+}
+
+.elementor-repeater-row-item-title {
+  text-transform: capitalize;
+}
+
+.elementor-panel .elementor-element {
+  position: relative;
+}
+
+#elementor-panel-elements-wrapper
+  .elementor-element
+  .icon
+  i.neuron-badge:after {
+  content: 'Neuron';
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  font-weight: 600;
+  font-size: 9px;
+  text-align: right;
+  padding: 3px 4px 2px;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: #eee;
+  border-bottom-left-radius: 2px;
+  text-transform: uppercase;
+  font-family: 'Open Sans', Roboto, Helvetica, Arial, sans-serif;
+}

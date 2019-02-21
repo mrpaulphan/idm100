@@ -1,0 +1,50 @@
+/*=================================
+=        Nav Vertical Menu        =
+=================================*/
+
+.m-nav-menu--vertical {
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      position: relative;
+      margin-bottom: 0;
+
+      &:not(:last-child) {
+        margin-bottom: rem(16px);
+      }
+
+      a {
+        @include nav-item;
+      }
+
+      &.menu-item-has-children {
+        .menu-item-icon {
+          @include nav-item-icon;
+          padding-top: 4px;
+          padding-bottom: 0;
+
+          svg {
+            color: $dark;
+          }
+        }
+
+        ul.sub-menu {
+          margin-top: rem(16px);
+          margin-bottom: 0;
+          padding-left: 0;
+          display: none;
+
+          li {
+            a {
+              text-transform: none;
+              letter-spacing: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

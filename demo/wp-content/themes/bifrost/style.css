@@ -1,0 +1,109 @@
+/*
+Theme Name: Bifrost 
+Theme URI: http://neuronthemes.com/bifrost
+Description: Bifrost is a very clean and WordPress Theme which fits any needs, it finds use in different purposes like agencies, freelancers, photographer, e-commerce stores and many more. It is built with love and passion by our creative team, the elements are created with the trending page builder called Elementor. Elementor is a fully front-end page builder which is used in more than 1 million active websites and counting, template library, copy-paste feature, edit the spacing/margins for each device, shape dividers, one click demo importer are only a few features that are included in Bifrost. Either you are a Designer, Freelancer or a Photographer, the fully responsive theme that scales will transform your website into something more creative than you ever imagined.
+Author: NeuronThemes
+Author URI: http://neuronthemes.com
+Version: 1.1.0
+License: General Public License
+License URI: http://www.gnu.org/licenses/gpl.html
+Tags: blog, two-columns, three-columns, left-sidebar, featured-images, sticky-post, custom-menu, footer-widgets, theme-options, threaded-comments, translation-ready, e-commerce, portfolio
+Text Domain: bifrost
+Domain Path: /languages
+*/
+
+/*==============================
+=        WordPress Core        =
+==============================*/
+
+.wp-caption {
+  width: auto !important;
+  clear: both;
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.wp-caption a {
+  box-shadow: none;
+}
+
+.alignright {
+  margin: 0px 0px 25px 25px;
+  box-sizing: border-box;
+  float: right !important;
+}
+
+.alignleft {
+  float: left;
+  margin: 0px 25px 25px 0px;
+  box-sizing: border-box;
+}
+
+.aligncenter {
+  text-align: center;
+  margin: 0 25px;
+  box-sizing: border-box;
+}
+
+.wp-caption img {
+  margin-top: 15px;
+}
+
+.wp-caption p.wp-caption-text {
+  padding: 0;
+  font-size: 14px;
+  margin-top: 0px;
+  font-style: italic;
+}
+
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+}
+
+.bypostauthor {
+  background-color: #f3f1f1;
+}
+
+.gallery-caption {
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+.gallery-item {
+  margin: 0 0 15px 0;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.gallery-item a {
+  box-shadow: none;
+}
+
+.gallery-item img {
+  border: 0 !important;
+}

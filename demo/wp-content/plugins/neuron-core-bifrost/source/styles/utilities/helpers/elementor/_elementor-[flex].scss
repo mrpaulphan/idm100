@@ -1,0 +1,82 @@
+//==============================
+//        Elementor Flex
+//==============================
+
+// Flex Row
+.neuron-flex-row {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: unset !important;
+
+      .elementor-element {
+        margin-bottom: 0;
+        align-self: center;
+      }
+    }
+  }
+}
+
+// Flex Column
+.neuron-flex-column {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: unset !important;
+
+      .elementor-element {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.neuron-justify-content-start {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      justify-content: start;
+    }
+  }
+}
+
+.neuron-justify-content-center {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      justify-content: center;
+    }
+  }
+}
+
+.neuron-justify-content-end {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.neuron-justify-content-space-between {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      justify-content: space-between;
+    }
+  }
+}
+
+.neuron-justify-content-space-evenly {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      justify-content: space-evenly;
+    }
+  }
+}
+
+.neuron-justify-content-space-around {
+  > .elementor-column-wrap {
+    > .elementor-widget-wrap {
+      justify-content: space-around;
+    }
+  }
+}

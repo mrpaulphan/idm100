@@ -1,12 +1,13 @@
-Theme Implementation 
-You will be submitting a link to your domain with the following:
+## 05 - Theme Implementation 
+On your website, you must complete the following:
 
-- Theme uploaded and applied
+- Upload/apply your theme that you picked.
 
-- Main Navigation enabled with a list of pages based off your previous site map assignment
+- Create a navigation menu/pages based off your site map assignment
 
-- Content on the homepage
+- Set your front page by assigning it to a home page you created
 
+## Submitting Work
+Submit a link to your domain (Drop link in the comment section) via blackboard.
 
-Submission
-Submit the full link to your website (http://{your domain here}.com). 
+Example: http://{your domain here}.com

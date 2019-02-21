@@ -1,0 +1,27 @@
+.m-social-media {
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+      margin-bottom: 0;
+      margin-left: 2.66667rem;
+      margin-left: 1.5rem;
+
+      &:first-child {
+        margin-left: 0 !important;
+      }
+
+      a {
+        color: #232931;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+
+        &:hover {
+          color: #00a6e7;
+        }
+      }
+    }
+  }
+}

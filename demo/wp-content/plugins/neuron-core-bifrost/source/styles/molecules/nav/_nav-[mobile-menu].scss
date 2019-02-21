@@ -1,0 +1,102 @@
+/*===============================
+=        Nav Mobile Menu        =
+===============================*/
+
+.m-nav-menu--mobile-icon {
+  box-shadow: none !important;
+
+  svg {
+    transition: background-color $easeInOutQuad $slow-time;
+
+    line {
+      fill: none;
+      stroke: $dark;
+      stroke-width: 6;
+      stroke-miterlimit: 10;
+      transition: stroke $easeInOutQuad $slow-time;
+    }
+
+    &:hover {
+      line {
+        stroke: $theme-color;
+      }
+    }
+  }
+}
+
+.m-nav-menu--mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: $extra-dark;
+  border-radius: $theme-radius;
+  z-index: 1;
+  margin-top: rem(32px);
+  transition: transform $easeInOutQuad $fast-time,
+    margin-top $easeInOutQuad $fast-time, opacity $easeInOutQuad $fast-time,
+    visibility $easeInOutQuad $fast-time;
+  transform: translateY(15px);
+  opacity: 0;
+  visibility: hidden;
+
+  &.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  nav {
+    ul.menu {
+      padding: rem(16px) rem(32px);
+      margin: 0;
+
+      li.menu-item {
+        display: block;
+        position: relative;
+        margin-bottom: 0;
+        padding: rem(8px) 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a {
+          color: $white;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: rem(15px);
+          font-weight: $semi-bold;
+
+          &:hover {
+            // @include link-shadow-color($white);
+            color: rgba($white, 0.75);
+          }
+        }
+
+        &.current_page_ancestor,
+        &.current_page_item {
+          > a {
+            // @include link-shadow-color($white);
+            opacity: $hover-opacity;
+          }
+        }
+
+        &.menu-item-has-children {
+          .menu-item-icon {
+            @include nav-item-icon;
+          }
+
+          ul.sub-menu {
+            margin-top: rem(16px);
+            margin-bottom: 0;
+            padding-left: rem(16px);
+            display: none;
+            width: 100% !important;
+            left: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}

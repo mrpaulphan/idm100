@@ -1,0 +1,127 @@
+{
+    "key": "group_5ba249fd4ae33",
+    "title": "Menu Settings",
+    "fields": [
+        {
+            "key": "field_5ba24d119c495__trashed",
+            "label": "Mega Menu",
+            "name": "mega_menu",
+            "type": "true_false",
+            "instructions": "Activate the mega menu.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5ba36847b8be9__trashed",
+            "label": "Mega Menu Columns",
+            "name": "mega_menu_columns",
+            "type": "select",
+            "instructions": "Select the columns of mega menu.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5ba24d119c495",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "2 Columns",
+                "2": "3 Columns",
+                "3": "4 Columns",
+                "4": "5 Columns"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5ba3a694b1027__trashed",
+            "label": "Unclickable",
+            "name": "menu_unclickable",
+            "type": "true_false",
+            "instructions": "Make this menu unclickable. <br \/>\r\n<small>Note: Can be used for dropdown parents or mega menu headings.<\/small>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5bb4c411e84b0__trashed",
+            "label": "Label",
+            "name": "menu_label",
+            "type": "select",
+            "instructions": "Add a label to the menu item.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "None",
+                "2": "New",
+                "3": "Hot"
+            },
+            "default_value": [
+                1
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "nav_menu_item",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1547738712
+}
