@@ -32,18 +32,26 @@ You need to present quality work. This project represents the summation of 10+ w
 - Have a navigation 
 - Must be responsive! Your site should be aesthetically pleasing to look at on your mobile device/table/ and computer
 - Use post categories
+- Register your site with [Google Webmasters](https://www.google.com/webmasters/#?modal_active=none) and upload your sitemap by using the "Google XML Sitemaps" plugin. 
 
 **Plugin Resources**
 
 https://wordpress.org/plugins/ml-slider/
+
 https://wordpress.org/plugins/woocommerce/
+
 https://wordpress.org/plugins/limit-login-attempts/
+
 https://wordpress.org/plugins/siteorigin-panels/
+
 https://ps.w.org/elementor/assets/screenshot-1.gif?rev=1608747
+
 https://wordpress.org/plugins/google-analytics-dashboard-for-wp/
+
 https://ps.w.org/wordpress-seo/assets/screenshot-1.png?rev=1550389
 
 
 
 **What to submit**
-Submit a link to your website. Your site must be **live** and **public**.
+
+Submit a link to your website. Your site must be **live** and **public**. DOUBLE CHECK YOUR LINK IN A PRIVATE WINDOW to make sure it's live
