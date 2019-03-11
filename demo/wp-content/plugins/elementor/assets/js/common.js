@@ -1,4 +1,4 @@
-/*! elementor - v2.4.7 - 18-02-2019 */
+/*! elementor - v2.5.5 - 11-03-2019 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 165);
+/******/ 	return __webpack_require__(__webpack_require__.s = 166);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -108,7 +108,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 16:
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -235,7 +235,86 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 165:
+/***/ 16:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _environment = __webpack_require__(1);
+
+var _environment2 = _interopRequireDefault(_environment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var HotKeys = function () {
+	function HotKeys() {
+		_classCallCheck(this, HotKeys);
+
+		this.hotKeysHandlers = {};
+	}
+
+	_createClass(HotKeys, [{
+		key: 'applyHotKey',
+		value: function applyHotKey(event) {
+			var handlers = this.hotKeysHandlers[event.which];
+
+			if (!handlers) {
+				return;
+			}
+
+			jQuery.each(handlers, function (key, handler) {
+				if (handler.isWorthHandling && !handler.isWorthHandling(event)) {
+					return;
+				}
+
+				// Fix for some keyboard sources that consider alt key as ctrl key
+				if (!handler.allowAltKey && event.altKey) {
+					return;
+				}
+
+				event.preventDefault();
+
+				handler.handle(event);
+			});
+		}
+	}, {
+		key: 'isControlEvent',
+		value: function isControlEvent(event) {
+			return event[_environment2.default.mac ? 'metaKey' : 'ctrlKey'];
+		}
+	}, {
+		key: 'addHotKeyHandler',
+		value: function addHotKeyHandler(keyCode, handlerName, handler) {
+			if (!this.hotKeysHandlers[keyCode]) {
+				this.hotKeysHandlers[keyCode] = {};
+			}
+
+			this.hotKeysHandlers[keyCode][handlerName] = handler;
+		}
+	}, {
+		key: 'bindListener',
+		value: function bindListener($listener) {
+			$listener.on('keydown', this.applyHotKey.bind(this));
+		}
+	}]);
+
+	return HotKeys;
+}();
+
+exports.default = HotKeys;
+
+/***/ }),
+
+/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -245,27 +324,27 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _helpers = __webpack_require__(166);
+var _helpers = __webpack_require__(167);
 
 var _helpers2 = _interopRequireDefault(_helpers);
 
-var _storage = __webpack_require__(16);
+var _storage = __webpack_require__(15);
 
 var _storage2 = _interopRequireDefault(_storage);
 
-var _hotKeys = __webpack_require__(17);
+var _hotKeys = __webpack_require__(16);
 
 var _hotKeys2 = _interopRequireDefault(_hotKeys);
 
-var _ajax = __webpack_require__(167);
+var _ajax = __webpack_require__(168);
 
 var _ajax2 = _interopRequireDefault(_ajax);
 
-var _finder = __webpack_require__(168);
+var _finder = __webpack_require__(169);
 
 var _finder2 = _interopRequireDefault(_finder);
 
-var _connect = __webpack_require__(175);
+var _connect = __webpack_require__(176);
 
 var _connect2 = _interopRequireDefault(_connect);
 
@@ -394,7 +473,7 @@ elementorCommon.initComponents();
 
 /***/ }),
 
-/***/ 166:
+/***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -445,7 +524,7 @@ exports.default = Helpers;
 
 /***/ }),
 
-/***/ 167:
+/***/ 168:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -475,7 +554,8 @@ var _class = function (_elementorModules$Mod) {
 				ajaxParams: {
 					type: 'POST',
 					url: elementorCommon.config.ajax.url,
-					data: {}
+					data: {},
+					dataType: 'json'
 				},
 				actionPrefix: 'elementor_'
 			};
@@ -734,7 +814,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 168:
+/***/ 169:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -746,7 +826,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _modalLayout = __webpack_require__(169);
+var _modalLayout = __webpack_require__(170);
 
 var _modalLayout2 = _interopRequireDefault(_modalLayout);
 
@@ -814,7 +894,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 169:
+/***/ 170:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -828,7 +908,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _modalContent = __webpack_require__(170);
+var _modalContent = __webpack_require__(171);
 
 var _modalContent2 = _interopRequireDefault(_modalContent);
 
@@ -913,7 +993,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 17:
+/***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -925,86 +1005,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _environment = __webpack_require__(1);
-
-var _environment2 = _interopRequireDefault(_environment);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var HotKeys = function () {
-	function HotKeys() {
-		_classCallCheck(this, HotKeys);
-
-		this.hotKeysHandlers = {};
-	}
-
-	_createClass(HotKeys, [{
-		key: 'applyHotKey',
-		value: function applyHotKey(event) {
-			var handlers = this.hotKeysHandlers[event.which];
-
-			if (!handlers) {
-				return;
-			}
-
-			jQuery.each(handlers, function (key, handler) {
-				if (handler.isWorthHandling && !handler.isWorthHandling(event)) {
-					return;
-				}
-
-				// Fix for some keyboard sources that consider alt key as ctrl key
-				if (!handler.allowAltKey && event.altKey) {
-					return;
-				}
-
-				event.preventDefault();
-
-				handler.handle(event);
-			});
-		}
-	}, {
-		key: 'isControlEvent',
-		value: function isControlEvent(event) {
-			return event[_environment2.default.mac ? 'metaKey' : 'ctrlKey'];
-		}
-	}, {
-		key: 'addHotKeyHandler',
-		value: function addHotKeyHandler(keyCode, handlerName, handler) {
-			if (!this.hotKeysHandlers[keyCode]) {
-				this.hotKeysHandlers[keyCode] = {};
-			}
-
-			this.hotKeysHandlers[keyCode][handlerName] = handler;
-		}
-	}, {
-		key: 'bindListener',
-		value: function bindListener($listener) {
-			$listener.on('keydown', this.applyHotKey.bind(this));
-		}
-	}]);
-
-	return HotKeys;
-}();
-
-exports.default = HotKeys;
-
-/***/ }),
-
-/***/ 170:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _categories = __webpack_require__(171);
+var _categories = __webpack_require__(172);
 
 var _categories2 = _interopRequireDefault(_categories);
 
@@ -1085,7 +1086,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 171:
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1097,11 +1098,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _category = __webpack_require__(43);
+var _category = __webpack_require__(42);
 
 var _category2 = _interopRequireDefault(_category);
 
-var _dynamicCategory = __webpack_require__(174);
+var _dynamicCategory = __webpack_require__(175);
 
 var _dynamicCategory2 = _interopRequireDefault(_dynamicCategory);
 
@@ -1272,7 +1273,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 172:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1318,7 +1319,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 173:
+/***/ 174:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1365,7 +1366,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 174:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1379,7 +1380,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _category = __webpack_require__(43);
+var _category = __webpack_require__(42);
 
 var _category2 = _interopRequireDefault(_category);
 
@@ -1467,7 +1468,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 175:
+/***/ 176:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1556,7 +1557,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 43:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1568,11 +1569,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _item = __webpack_require__(172);
+var _item = __webpack_require__(173);
 
 var _item2 = _interopRequireDefault(_item);
 
-var _itemModel = __webpack_require__(173);
+var _itemModel = __webpack_require__(174);
 
 var _itemModel2 = _interopRequireDefault(_itemModel);
 

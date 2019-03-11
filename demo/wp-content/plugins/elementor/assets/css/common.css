@@ -1,4 +1,4 @@
-/*! elementor - v2.4.7 - 18-02-2019 */
+/*! elementor - v2.5.5 - 11-03-2019 */
 .dialog-widget-content {
   background-color: #fff;
   position: absolute;
@@ -32,10 +32,10 @@
   .dialog-type-lightbox .dialog-header {
     font-size: 15px;
     color: #495157;
-    padding: 20px 0;
+    padding: 30px 0 10px;
     font-weight: 500; }
   .dialog-type-lightbox .dialog-message {
-    padding: 0 20px 20px;
+    padding: 0 30px 30px;
     min-height: 50px; }
   .dialog-type-lightbox:not(.elementor-popup-modal) .dialog-header,
   .dialog-type-lightbox:not(.elementor-popup-modal) .dialog-message {
@@ -44,6 +44,7 @@
     border-top: 1px solid #e6e9ec;
     text-align: center; }
     .dialog-type-lightbox .dialog-buttons-wrapper > .dialog-button {
+      font-family: Roboto;
       width: 50%;
       border: none;
       background: none;
@@ -113,7 +114,8 @@
     left: 0;
     height: 100%;
     width: 100%;
-    border: 0; }
+    border: 0;
+    background-color: #000; }
   .elementor-fit-aspect-ratio video {
     width: 100%; }
 
@@ -158,7 +160,7 @@
   height: 750px;
   max-height: 85vh;
   overflow: auto;
-  padding: 25px 30px 30px; }
+  padding-top: 25px; }
 
 .elementor-templates-modal .dialog-content {
   height: 100%; }
@@ -300,7 +302,6 @@
     width: 650px;
     max-width: 98%;
     top: 18vh;
-    left: -webkit-calc( 50% - 650px / 2);
     left: calc( 50% - 650px / 2); }
   #elementor-finder__modal .dialog-message {
     height: initial;
@@ -334,10 +335,6 @@
     font-size: 14px;
     color: #495157; }
     #elementor-finder__search__input::-webkit-input-placeholder {
-      color: #a4afb7;
-      font-style: italic;
-      font-weight: 300; }
-    #elementor-finder__search__input:-ms-input-placeholder {
       color: #a4afb7;
       font-style: italic;
       font-weight: 300; }

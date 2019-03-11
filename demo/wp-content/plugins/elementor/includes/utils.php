@@ -625,4 +625,25 @@ class Utils {
 
 		return implode( ' ', $rendered_attributes );
 	}
+
+	public static function get_meta_viewport( $context = '' ) {
+		$meta_tag = '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />';
+		/**
+		 * Viewport meta tag.
+		 *
+		 * Filters the Elementor preview URL.
+		 *
+		 * @since 2.5.0
+		 *
+		 * @param string $meta_tag Viewport meta tag.
+		 */
+		return apply_filters( 'elementor/template/viewport_tag', $meta_tag, $context );
+	}
+
+	public static function elementor_print_js_config( $js_var, $config, $already_json = false ) {
+		$config = $already_json ? $config : wp_json_encode( $config );
+		echo '<script data-cfasync="false">' . PHP_EOL;
+		echo 'var ' . $js_var . ' = ' . $config . ';' . PHP_EOL;
+		echo '</script>' . PHP_EOL;
+	}
 }

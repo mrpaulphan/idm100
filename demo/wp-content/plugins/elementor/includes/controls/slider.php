@@ -46,6 +46,7 @@ class Control_Slider extends Control_Base_Units {
 		return array_merge(
 			parent::get_default_value(), [
 				'size' => '',
+				'sizes' => [],
 			]
 		);
 	}
@@ -65,6 +66,8 @@ class Control_Slider extends Control_Base_Units {
 		return array_merge(
 			parent::get_default_settings(), [
 				'label_block' => true,
+				'labels' => [],
+				'scales' => 0,
 			]
 		);
 	}
@@ -86,10 +89,29 @@ class Control_Slider extends Control_Base_Units {
 			<label for="<?php echo $control_uid; ?>" class="elementor-control-title">{{{ data.label }}}</label>
 			<?php $this->print_units_template(); ?>
 			<div class="elementor-control-input-wrapper elementor-clearfix">
+				<# if ( isMultiple && ( data.labels.length || data.scales ) ) { #>
+					<div class="elementor-slider__extra">
+						<# if ( data.labels.length ) { #>
+							<div class="elementor-slider__labels">
+								<# jQuery.each( data.labels, ( index, label ) => { #>
+									<div class="elementor-slider__label">{{{ label }}}</div>
+								<# } ); #>
+							</div>
+						<# } if ( data.scales ) { #>
+							<div class="elementor-slider__scales">
+								<# for ( var i = 0; i < data.scales; i++ ) { #>
+									<div class="elementor-slider__scale"></div>
+								<# } #>
+							</div>
+						<# } #>
+					</div>
+				<# } #>
 				<div class="elementor-slider"></div>
-				<div class="elementor-slider-input">
-					<input id="<?php echo $control_uid; ?>" type="number" min="{{ data.min }}" max="{{ data.max }}" step="{{ data.step }}" data-setting="size" />
-				</div>
+				<# if ( ! isMultiple ) { #>
+					<div class="elementor-slider-input">
+						<input id="<?php echo $control_uid; ?>" type="number" min="{{ data.min }}" max="{{ data.max }}" step="{{ data.step }}" data-setting="size" />
+					</div>
+				<# } #>
 			</div>
 		</div>
 		<# if ( data.description ) { #>

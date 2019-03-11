@@ -28,7 +28,7 @@ You need to present quality work. This project represents the summation of 10+ w
 
 
 
-- You must have  a minimum of three pages
+- You must have  a minimum of three pages (homepage does not count)
 - Have a navigation 
 - Must be responsive! Your site should be aesthetically pleasing to look at on your mobile device/table/ and computer
 - Use post categories

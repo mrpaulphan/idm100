@@ -1,4 +1,4 @@
-/*! elementor - v2.4.7 - 18-02-2019 */
+/*! elementor - v2.5.5 - 11-03-2019 */
 .dialog-widget-content {
   background-color: #fff;
   position: absolute;
@@ -32,10 +32,10 @@
   .dialog-type-lightbox .dialog-header {
     font-size: 15px;
     color: #495157;
-    padding: 20px 0;
+    padding: 30px 0 10px;
     font-weight: 500; }
   .dialog-type-lightbox .dialog-message {
-    padding: 0 20px 20px;
+    padding: 0 30px 30px;
     min-height: 50px; }
   .dialog-type-lightbox:not(.elementor-popup-modal) .dialog-header,
   .dialog-type-lightbox:not(.elementor-popup-modal) .dialog-message {
@@ -44,6 +44,7 @@
     border-top: 1px solid #e6e9ec;
     text-align: center; }
     .dialog-type-lightbox .dialog-buttons-wrapper > .dialog-button {
+      font-family: Roboto;
       width: 50%;
       border: none;
       background: none;
@@ -113,7 +114,8 @@
     left: 0;
     height: 100%;
     width: 100%;
-    border: 0; }
+    border: 0;
+    background-color: #000; }
   .elementor-fit-aspect-ratio video {
     width: 100%; }
 
@@ -158,7 +160,7 @@
   height: 750px;
   max-height: 85vh;
   overflow: auto;
-  padding: 25px 30px 30px; }
+  padding-top: 25px; }
 
 .elementor-templates-modal .dialog-content {
   height: 100%; }
@@ -329,14 +331,17 @@
     border: none; }
   .elementor .elementor-custom-embed {
     line-height: 0; }
-  .elementor .elementor-background-video-container {
+  .elementor .elementor-background-video-container,
+  .elementor .elementor-background-holder,
+  .elementor .elementor-background {
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
     position: absolute;
     overflow: hidden;
-    z-index: 0;
+    z-index: 0; }
+  .elementor .elementor-background-video-container {
     -webkit-transition: opacity 1s;
     -o-transition: opacity 1s;
     transition: opacity 1s;
@@ -369,6 +374,26 @@
     top: 0;
     left: 0;
     position: absolute; }
+
+.elementor-widget-wrap > .elementor-element.elementor-absolute {
+  position: absolute; }
+
+.elementor-widget-wrap > .elementor-element.elementor-fixed {
+  position: fixed; }
+
+.elementor-widget-wrap .elementor-element.elementor-widget__width-auto, .elementor-widget-wrap .elementor-element.elementor-widget__width-initial {
+  max-width: 100%; }
+
+@media (max-width: 1024px) {
+  .elementor-widget-wrap .elementor-element.elementor-widget-tablet__width-auto, .elementor-widget-wrap .elementor-element.elementor-widget-tablet__width-initial {
+    max-width: 100%; } }
+
+@media (max-width: 767px) {
+  .elementor-widget-wrap .elementor-element.elementor-widget-mobile__width-auto, .elementor-widget-wrap .elementor-element.elementor-widget-mobile__width-initial {
+    max-width: 100%; } }
+
+.elementor-element.elementor-absolute, .elementor-element.elementor-fixed {
+  z-index: 1; }
 
 .elementor-invisible {
   visibility: hidden; }
@@ -554,12 +579,27 @@
 
 .elementor-widget-wrap {
   position: relative;
-  width: 100%; }
+  width: 100%;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+          align-content: flex-start; }
+  .elementor:not(.elementor-bc-flex-widget) .elementor-widget-wrap {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+  .elementor-widget-wrap > .elementor-element {
+    width: 100%; }
 
 .elementor-widget {
   position: relative; }
   .elementor-widget:not(:last-child) {
     margin-bottom: 20px; }
+    .elementor-widget:not(:last-child).elementor-widget__width-auto, .elementor-widget:not(:last-child).elementor-widget__width-initial, .elementor-widget:not(:last-child).elementor-absolute {
+      margin-bottom: 0; }
 
 .elementor-column {
   position: relative;
@@ -1329,15 +1369,15 @@ ul.elementor-icon-list-items.elementor-inline-items {
     display: grid; } }
 
 @media (min-width: 1025px) {
-  head {
+  #elementor-device-mode:after {
     content: 'desktop'; } }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  head {
+  #elementor-device-mode:after {
     content: 'tablet'; } }
 
 @media (max-width: 767px) {
-  head {
+  #elementor-device-mode:after {
     content: 'mobile'; } }
 
 .elementor-form-fields-wrapper {
@@ -1392,6 +1432,10 @@ ul.elementor-icon-list-items.elementor-inline-items {
       font-family: inherit;
       opacity: 0.6; }
     .elementor-field-group .elementor-field-textual:-ms-input-placeholder {
+      color: inherit;
+      font-family: inherit;
+      opacity: 0.6; }
+    .elementor-field-group .elementor-field-textual:-moz-placeholder {
       color: inherit;
       font-family: inherit;
       opacity: 0.6; }
@@ -1942,6 +1986,10 @@ ul.elementor-icon-list-items.elementor-inline-items {
     display: -ms-flexbox;
     display: flex; }
   .elementor-widget-icon-box.elementor-position-left .elementor-icon-box-icon, .elementor-widget-icon-box.elementor-position-right .elementor-icon-box-icon {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 auto;
         -ms-flex: 0 0 auto;
@@ -1989,6 +2037,12 @@ ul.elementor-icon-list-items.elementor-inline-items {
 
 .elementor-widget-icon-box .elementor-icon-box-title a {
   color: inherit; }
+
+.elementor-widget-icon-box .elementor-icon-box-content {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
 
 .elementor-widget-icon-box .elementor-icon-box-description {
   margin: 0; }
@@ -3601,7 +3655,6 @@ button.swiper-pagination-bullet {
             transform: rotate(180deg); }
   .elementor-shape svg {
     display: block;
-    width: -webkit-calc(100% + 1.3px);
     width: calc(100% + 1.3px);
     position: relative;
     left: 50%;

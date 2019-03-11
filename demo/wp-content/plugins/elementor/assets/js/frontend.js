@@ -1,4 +1,4 @@
-/*! elementor - v2.4.7 - 18-02-2019 */
+/*! elementor - v2.5.5 - 11-03-2019 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 180);
+/******/ 	return __webpack_require__(__webpack_require__.s = 181);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -108,7 +108,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -375,7 +375,7 @@ module.exports = EventManager;
 
 /***/ }),
 
-/***/ 16:
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -502,7 +502,7 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 17:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -581,7 +581,7 @@ exports.default = HotKeys;
 
 /***/ }),
 
-/***/ 18:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -685,7 +685,145 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 180:
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = elementorModules.frontend.handlers.Base.extend({
+	$activeContent: null,
+
+	getDefaultSettings: function getDefaultSettings() {
+		return {
+			selectors: {
+				tabTitle: '.elementor-tab-title',
+				tabContent: '.elementor-tab-content'
+			},
+			classes: {
+				active: 'elementor-active'
+			},
+			showTabFn: 'show',
+			hideTabFn: 'hide',
+			toggleSelf: true,
+			hidePrevious: true,
+			autoExpand: true
+		};
+	},
+
+	getDefaultElements: function getDefaultElements() {
+		var selectors = this.getSettings('selectors');
+
+		return {
+			$tabTitles: this.findElement(selectors.tabTitle),
+			$tabContents: this.findElement(selectors.tabContent)
+		};
+	},
+
+	activateDefaultTab: function activateDefaultTab() {
+		var settings = this.getSettings();
+
+		if (!settings.autoExpand || 'editor' === settings.autoExpand && !this.isEdit) {
+			return;
+		}
+
+		var defaultActiveTab = this.getEditSettings('activeItemIndex') || 1,
+		    originalToggleMethods = {
+			showTabFn: settings.showTabFn,
+			hideTabFn: settings.hideTabFn
+		};
+
+		// Toggle tabs without animation to avoid jumping
+		this.setSettings({
+			showTabFn: 'show',
+			hideTabFn: 'hide'
+		});
+
+		this.changeActiveTab(defaultActiveTab);
+
+		// Return back original toggle effects
+		this.setSettings(originalToggleMethods);
+	},
+
+	deactivateActiveTab: function deactivateActiveTab(tabIndex) {
+		var settings = this.getSettings(),
+		    activeClass = settings.classes.active,
+		    activeFilter = tabIndex ? '[data-tab="' + tabIndex + '"]' : '.' + activeClass,
+		    $activeTitle = this.elements.$tabTitles.filter(activeFilter),
+		    $activeContent = this.elements.$tabContents.filter(activeFilter);
+
+		$activeTitle.add($activeContent).removeClass(activeClass);
+
+		$activeContent[settings.hideTabFn]();
+	},
+
+	activateTab: function activateTab(tabIndex) {
+		var settings = this.getSettings(),
+		    activeClass = settings.classes.active,
+		    $requestedTitle = this.elements.$tabTitles.filter('[data-tab="' + tabIndex + '"]'),
+		    $requestedContent = this.elements.$tabContents.filter('[data-tab="' + tabIndex + '"]');
+
+		$requestedTitle.add($requestedContent).addClass(activeClass);
+
+		$requestedContent[settings.showTabFn]();
+	},
+
+	isActiveTab: function isActiveTab(tabIndex) {
+		return this.elements.$tabTitles.filter('[data-tab="' + tabIndex + '"]').hasClass(this.getSettings('classes.active'));
+	},
+
+	bindEvents: function bindEvents() {
+		var _this = this;
+
+		this.elements.$tabTitles.on({
+			keydown: function keydown(event) {
+				if ('Enter' === event.key) {
+					event.preventDefault();
+
+					_this.changeActiveTab(event.currentTarget.dataset.tab);
+				}
+			},
+			click: function click(event) {
+				event.preventDefault();
+
+				_this.changeActiveTab(event.currentTarget.dataset.tab);
+			}
+		});
+	},
+
+	onInit: function onInit() {
+		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
+
+		this.activateDefaultTab();
+	},
+
+	onEditSettingsChange: function onEditSettingsChange(propertyName) {
+		if ('activeItemIndex' === propertyName) {
+			this.activateDefaultTab();
+		}
+	},
+
+	changeActiveTab: function changeActiveTab(tabIndex) {
+		var isActiveTab = this.isActiveTab(tabIndex),
+		    settings = this.getSettings();
+
+		if ((settings.toggleSelf || !isActiveTab) && settings.hidePrevious) {
+			this.deactivateActiveTab();
+		}
+
+		if (!settings.hidePrevious && isActiveTab) {
+			this.deactivateActiveTab(tabIndex);
+		}
+
+		if (!isActiveTab) {
+			this.activateTab(tabIndex);
+		}
+	}
+});
+
+/***/ }),
+
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -693,15 +831,15 @@ exports.default = _class;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _documentsManager = __webpack_require__(181);
+var _documentsManager = __webpack_require__(182);
 
 var _documentsManager2 = _interopRequireDefault(_documentsManager);
 
-var _hotKeys = __webpack_require__(17);
+var _hotKeys = __webpack_require__(16);
 
 var _hotKeys2 = _interopRequireDefault(_hotKeys);
 
-var _storage = __webpack_require__(16);
+var _storage = __webpack_require__(15);
 
 var _storage2 = _interopRequireDefault(_storage);
 
@@ -718,11 +856,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* global elementorFrontendConfig */
 
 
-var EventManager = __webpack_require__(14),
-    ElementsHandler = __webpack_require__(182),
-    YouTubeModule = __webpack_require__(194),
-    AnchorsModule = __webpack_require__(195),
-    LightboxModule = __webpack_require__(196);
+var EventManager = __webpack_require__(13),
+    ElementsHandler = __webpack_require__(183),
+    YouTubeModule = __webpack_require__(195),
+    AnchorsModule = __webpack_require__(196),
+    LightboxModule = __webpack_require__(197);
 
 var Frontend = function (_elementorModules$Vie) {
 	_inherits(Frontend, _elementorModules$Vie);
@@ -739,10 +877,11 @@ var Frontend = function (_elementorModules$Vie) {
 		var _this = _possibleConstructorReturn(this, (_ref = Frontend.__proto__ || Object.getPrototypeOf(Frontend)).call.apply(_ref, [this].concat(args)));
 
 		_this.config = elementorFrontendConfig;
-
-		_this.Module = __webpack_require__(3);
 		return _this;
 	}
+
+	// TODO: BC since 2.5.0
+
 
 	_createClass(Frontend, [{
 		key: 'getDefaultSettings',
@@ -765,7 +904,8 @@ var Frontend = function (_elementorModules$Vie) {
 				$window: jQuery(window),
 				$document: jQuery(document),
 				$head: jQuery(document.head),
-				$body: jQuery(document.body)
+				$body: jQuery(document.body),
+				$deviceMode: jQuery('#elementor-device-mode')
 			};
 		}
 	}, {
@@ -809,7 +949,29 @@ var Frontend = function (_elementorModules$Vie) {
 	}, {
 		key: 'getCurrentDeviceMode',
 		value: function getCurrentDeviceMode() {
-			return getComputedStyle(this.elements.$head[0]).content.replace(/"/g, '');
+			return getComputedStyle(this.elements.$deviceMode[0], ':after').content.replace(/"/g, '');
+		}
+	}, {
+		key: 'getCurrentDeviceSetting',
+		value: function getCurrentDeviceSetting(settings, settingKey) {
+			var devices = ['desktop', 'tablet', 'mobile'],
+			    currentDeviceMode = elementorFrontend.getCurrentDeviceMode();
+
+			var currentDeviceIndex = devices.indexOf(currentDeviceMode);
+
+			while (currentDeviceIndex > 0) {
+				var currentDevice = devices[currentDeviceIndex],
+				    fullSettingKey = settingKey + '_' + currentDevice,
+				    deviceValue = settings[fullSettingKey];
+
+				if (deviceValue) {
+					return deviceValue;
+				}
+
+				currentDeviceIndex--;
+			}
+
+			return settings[settingKey];
 		}
 	}, {
 		key: 'isEditMode',
@@ -1033,6 +1195,15 @@ var Frontend = function (_elementorModules$Vie) {
 
 			this.initOnReadyComponents();
 		}
+	}, {
+		key: 'Module',
+		get: function get() {
+			/*if ( this.isEditMode() ) {
+   	parent.elementorCommon.helpers.deprecatedMethod( 'elementorFrontend.Module', '2.5.0', 'elementorModules.frontend.handlers.Base' );
+   }*/
+
+			return elementorModules.frontend.handlers.Base;
+		}
 	}]);
 
 	return Frontend;
@@ -1048,7 +1219,7 @@ if (!elementorFrontend.isEditMode()) {
 
 /***/ }),
 
-/***/ 181:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1060,7 +1231,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _document = __webpack_require__(18);
+var _document = __webpack_require__(17);
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -1157,36 +1328,36 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 182:
+/***/ 183:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var ElementsHandler;
-
-ElementsHandler = function ElementsHandler($) {
+module.exports = function ($) {
 	var self = this;
 
 	// element-type.skin-type
 	var handlers = {
 		// Elements
-		section: __webpack_require__(183),
+		section: __webpack_require__(184),
 
 		// Widgets
-		'accordion.default': __webpack_require__(184),
-		'alert.default': __webpack_require__(185),
-		'counter.default': __webpack_require__(186),
-		'progress.default': __webpack_require__(187),
-		'tabs.default': __webpack_require__(188),
-		'toggle.default': __webpack_require__(189),
-		'video.default': __webpack_require__(190),
-		'image-carousel.default': __webpack_require__(191),
-		'text-editor.default': __webpack_require__(192)
+		'accordion.default': __webpack_require__(185),
+		'alert.default': __webpack_require__(186),
+		'counter.default': __webpack_require__(187),
+		'progress.default': __webpack_require__(188),
+		'tabs.default': __webpack_require__(189),
+		'toggle.default': __webpack_require__(190),
+		'video.default': __webpack_require__(191),
+		'image-carousel.default': __webpack_require__(192),
+		'text-editor.default': __webpack_require__(193)
 	};
 
+	var handlersInstances = {};
+
 	var addGlobalHandlers = function addGlobalHandlers() {
-		elementorFrontend.hooks.addAction('frontend/element_ready/global', __webpack_require__(193));
+		elementorFrontend.hooks.addAction('frontend/element_ready/global', __webpack_require__(194));
 	};
 
 	var addElementsHandlers = function addElementsHandlers() {
@@ -1203,6 +1374,33 @@ ElementsHandler = function ElementsHandler($) {
 		addGlobalHandlers();
 
 		addElementsHandlers();
+	};
+
+	this.addHandler = function (HandlerClass, options) {
+		var elementID = options.$element.data('model-cid');
+
+		var handlerID = void 0;
+
+		// If element is in edit mode
+		if (elementID) {
+			handlerID = HandlerClass.prototype.getConstructorID();
+
+			if (!handlersInstances[elementID]) {
+				handlersInstances[elementID] = {};
+			}
+
+			var oldHandler = handlersInstances[elementID][handlerID];
+
+			if (oldHandler) {
+				oldHandler.onDestroy();
+			}
+		}
+
+		var newHandler = new HandlerClass(options);
+
+		if (elementID) {
+			handlersInstances[elementID][handlerID] = newHandler;
+		}
 	};
 
 	this.getHandlers = function (handlerName) {
@@ -1224,31 +1422,25 @@ ElementsHandler = function ElementsHandler($) {
 
 		elementorFrontend.hooks.doAction('frontend/element_ready/global', $scope, $);
 
-		var isWidgetType = -1 === ['section', 'column'].indexOf(elementType);
-
-		if (isWidgetType) {
-			elementorFrontend.hooks.doAction('frontend/element_ready/widget', $scope, $);
-		}
-
 		elementorFrontend.hooks.doAction('frontend/element_ready/' + elementType, $scope, $);
+
+		if ('widget' === elementType) {
+			elementorFrontend.hooks.doAction('frontend/element_ready/' + $scope.attr('data-widget_type'), $scope, $);
+		}
 	};
 
 	init();
 };
 
-module.exports = ElementsHandler;
-
 /***/ }),
 
-/***/ 183:
+/***/ 184:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var HandlerModule = __webpack_require__(3);
-
-var BackgroundVideo = HandlerModule.extend({
+var BackgroundVideo = elementorModules.frontend.handlers.Base.extend({
 	player: null,
 
 	isYTVideo: null,
@@ -1405,7 +1597,7 @@ var BackgroundVideo = HandlerModule.extend({
 	},
 
 	onInit: function onInit() {
-		HandlerModule.prototype.onInit.apply(this, arguments);
+		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
 
 		this.run();
 	},
@@ -1417,7 +1609,7 @@ var BackgroundVideo = HandlerModule.extend({
 	}
 });
 
-var StretchedSection = HandlerModule.extend({
+var StretchedSection = elementorModules.frontend.handlers.Base.extend({
 
 	stretchElement: null,
 
@@ -1457,7 +1649,7 @@ var StretchedSection = HandlerModule.extend({
 	},
 
 	onInit: function onInit() {
-		HandlerModule.prototype.onInit.apply(this, arguments);
+		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
 
 		this.initStretch();
 
@@ -1483,7 +1675,7 @@ var StretchedSection = HandlerModule.extend({
 	}
 });
 
-var Shapes = HandlerModule.extend({
+var Shapes = elementorModules.frontend.handlers.Base.extend({
 
 	getDefaultSettings: function getDefaultSettings() {
 		return {
@@ -1505,6 +1697,15 @@ var Shapes = HandlerModule.extend({
 		return elements;
 	},
 
+	getSvgURL: function getSvgURL(shapeType, fileName) {
+		var svgURL = this.getSettings('svgURL') + fileName + '.svg';
+		if (elementor.config.additional_shapes && shapeType in elementor.config.additional_shapes) {
+			svgURL = elementor.config.additional_shapes[shapeType];
+		}
+		return svgURL;
+	},
+
+
 	buildSVG: function buildSVG(side) {
 		var self = this,
 		    baseSettingKey = 'shape_divider_' + side,
@@ -1523,7 +1724,7 @@ var Shapes = HandlerModule.extend({
 			fileName += '-negative';
 		}
 
-		var svgURL = self.getSettings('svgURL') + fileName + '.svg';
+		var svgURL = self.getSvgURL(shapeType, fileName);
 
 		jQuery.get(svgURL, function (data) {
 			$svgContainer.append(data.childNodes[0]);
@@ -1539,7 +1740,7 @@ var Shapes = HandlerModule.extend({
 	onInit: function onInit() {
 		var self = this;
 
-		HandlerModule.prototype.onInit.apply(self, arguments);
+		elementorModules.frontend.handlers.Base.prototype.onInit.apply(self, arguments);
 
 		['top', 'bottom'].forEach(function (side) {
 			if (self.getElementSettings('shape_divider_' + side)) {
@@ -1567,7 +1768,7 @@ var Shapes = HandlerModule.extend({
 	}
 });
 
-var HandlesPosition = HandlerModule.extend({
+var HandlesPosition = elementorModules.frontend.handlers.Base.extend({
 
 	isFirst: function isFirst() {
 		return this.$element.is('.elementor-edit-mode .elementor-top-section:first');
@@ -1614,29 +1815,29 @@ var HandlesPosition = HandlerModule.extend({
 
 module.exports = function ($scope) {
 	if (elementorFrontend.isEditMode() || $scope.hasClass('elementor-section-stretched')) {
-		new StretchedSection({ $element: $scope });
+		elementorFrontend.elementsHandler.addHandler(StretchedSection, { $element: $scope });
 	}
 
 	if (elementorFrontend.isEditMode()) {
-		new Shapes({ $element: $scope });
-		new HandlesPosition({ $element: $scope });
+		elementorFrontend.elementsHandler.addHandler(Shapes, { $element: $scope });
+		elementorFrontend.elementsHandler.addHandler(HandlesPosition, { $element: $scope });
 	}
 
-	new BackgroundVideo({ $element: $scope });
+	elementorFrontend.elementsHandler.addHandler(BackgroundVideo, { $element: $scope });
 };
 
 /***/ }),
 
-/***/ 184:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var TabsModule = __webpack_require__(19);
+var TabsModule = __webpack_require__(18);
 
 module.exports = function ($scope) {
-	new TabsModule({
+	elementorFrontend.elementsHandler.addHandler(TabsModule, {
 		$element: $scope,
 		showTabFn: 'slideDown',
 		hideTabFn: 'slideUp'
@@ -1645,7 +1846,7 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 185:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1659,7 +1860,7 @@ module.exports = function ($scope, $) {
 
 /***/ }),
 
-/***/ 186:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1682,7 +1883,7 @@ module.exports = function ($scope, $) {
 
 /***/ }),
 
-/***/ 187:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1698,16 +1899,16 @@ module.exports = function ($scope, $) {
 
 /***/ }),
 
-/***/ 188:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var TabsModule = __webpack_require__(19);
+var TabsModule = __webpack_require__(18);
 
 module.exports = function ($scope) {
-	new TabsModule({
+	elementorFrontend.elementsHandler.addHandler(TabsModule, {
 		$element: $scope,
 		toggleSelf: false
 	});
@@ -1715,16 +1916,16 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 189:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var TabsModule = __webpack_require__(19);
+var TabsModule = __webpack_require__(18);
 
 module.exports = function ($scope) {
-	new TabsModule({
+	elementorFrontend.elementsHandler.addHandler(TabsModule, {
 		$element: $scope,
 		showTabFn: 'slideDown',
 		hideTabFn: 'slideUp',
@@ -1735,156 +1936,13 @@ module.exports = function ($scope) {
 
 /***/ }),
 
-/***/ 19:
+/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var HandlerModule = __webpack_require__(3);
-
-module.exports = HandlerModule.extend({
-	$activeContent: null,
-
-	getDefaultSettings: function getDefaultSettings() {
-		return {
-			selectors: {
-				tabTitle: '.elementor-tab-title',
-				tabContent: '.elementor-tab-content'
-			},
-			classes: {
-				active: 'elementor-active'
-			},
-			showTabFn: 'show',
-			hideTabFn: 'hide',
-			toggleSelf: true,
-			hidePrevious: true,
-			autoExpand: true
-		};
-	},
-
-	getDefaultElements: function getDefaultElements() {
-		var selectors = this.getSettings('selectors');
-
-		return {
-			$tabTitles: this.findElement(selectors.tabTitle),
-			$tabContents: this.findElement(selectors.tabContent)
-		};
-	},
-
-	activateDefaultTab: function activateDefaultTab() {
-		var settings = this.getSettings();
-
-		if (!settings.autoExpand || 'editor' === settings.autoExpand && !this.isEdit) {
-			return;
-		}
-
-		var defaultActiveTab = this.getEditSettings('activeItemIndex') || 1,
-		    originalToggleMethods = {
-			showTabFn: settings.showTabFn,
-			hideTabFn: settings.hideTabFn
-		};
-
-		// Toggle tabs without animation to avoid jumping
-		this.setSettings({
-			showTabFn: 'show',
-			hideTabFn: 'hide'
-		});
-
-		this.changeActiveTab(defaultActiveTab);
-
-		// Return back original toggle effects
-		this.setSettings(originalToggleMethods);
-	},
-
-	deactivateActiveTab: function deactivateActiveTab(tabIndex) {
-		var settings = this.getSettings(),
-		    activeClass = settings.classes.active,
-		    activeFilter = tabIndex ? '[data-tab="' + tabIndex + '"]' : '.' + activeClass,
-		    $activeTitle = this.elements.$tabTitles.filter(activeFilter),
-		    $activeContent = this.elements.$tabContents.filter(activeFilter);
-
-		$activeTitle.add($activeContent).removeClass(activeClass);
-
-		$activeContent[settings.hideTabFn]();
-	},
-
-	activateTab: function activateTab(tabIndex) {
-		var settings = this.getSettings(),
-		    activeClass = settings.classes.active,
-		    $requestedTitle = this.elements.$tabTitles.filter('[data-tab="' + tabIndex + '"]'),
-		    $requestedContent = this.elements.$tabContents.filter('[data-tab="' + tabIndex + '"]');
-
-		$requestedTitle.add($requestedContent).addClass(activeClass);
-
-		$requestedContent[settings.showTabFn]();
-	},
-
-	isActiveTab: function isActiveTab(tabIndex) {
-		return this.elements.$tabTitles.filter('[data-tab="' + tabIndex + '"]').hasClass(this.getSettings('classes.active'));
-	},
-
-	bindEvents: function bindEvents() {
-		var _this = this;
-
-		this.elements.$tabTitles.on({
-			keydown: function keydown(event) {
-				if ('Enter' === event.key) {
-					event.preventDefault();
-
-					_this.changeActiveTab(event.currentTarget.dataset.tab);
-				}
-			},
-			click: function click(event) {
-				event.preventDefault();
-
-				_this.changeActiveTab(event.currentTarget.dataset.tab);
-			}
-		});
-	},
-
-	onInit: function onInit() {
-		HandlerModule.prototype.onInit.apply(this, arguments);
-
-		this.activateDefaultTab();
-	},
-
-	onEditSettingsChange: function onEditSettingsChange(propertyName) {
-		if ('activeItemIndex' === propertyName) {
-			this.activateDefaultTab();
-		}
-	},
-
-	changeActiveTab: function changeActiveTab(tabIndex) {
-		var isActiveTab = this.isActiveTab(tabIndex),
-		    settings = this.getSettings();
-
-		if ((settings.toggleSelf || !isActiveTab) && settings.hidePrevious) {
-			this.deactivateActiveTab();
-		}
-
-		if (!settings.hidePrevious && isActiveTab) {
-			this.deactivateActiveTab(tabIndex);
-		}
-
-		if (!isActiveTab) {
-			this.activateTab(tabIndex);
-		}
-	}
-});
-
-/***/ }),
-
-/***/ 190:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var HandlerModule = __webpack_require__(3),
-    VideoModule;
-
-VideoModule = HandlerModule.extend({
+var VideoModule = elementorModules.frontend.handlers.Base.extend({
 	getDefaultSettings: function getDefaultSettings() {
 		return {
 			selectors: {
@@ -1937,7 +1995,7 @@ VideoModule = HandlerModule.extend({
 	},
 
 	animateVideo: function animateVideo() {
-		this.getLightBox().setEntranceAnimation(this.getElementSettings('lightbox_content_animation'));
+		this.getLightBox().setEntranceAnimation(this.getCurrentDeviceSetting('lightbox_content_animation'));
 	},
 
 	handleAspectRatio: function handleAspectRatio() {
@@ -1949,7 +2007,7 @@ VideoModule = HandlerModule.extend({
 	},
 
 	onElementChange: function onElementChange(propertyName) {
-		if ('lightbox_content_animation' === propertyName) {
+		if (0 === propertyName.indexOf('lightbox_content_animation')) {
 			this.animateVideo();
 
 			return;
@@ -1970,21 +2028,18 @@ VideoModule = HandlerModule.extend({
 });
 
 module.exports = function ($scope) {
-	new VideoModule({ $element: $scope });
+	elementorFrontend.elementsHandler.addHandler(VideoModule, { $element: $scope });
 };
 
 /***/ }),
 
-/***/ 191:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var HandlerModule = __webpack_require__(3),
-    ImageCarouselHandler;
-
-ImageCarouselHandler = HandlerModule.extend({
+var ImageCarouselHandler = elementorModules.frontend.handlers.Base.extend({
 	getDefaultSettings: function getDefaultSettings() {
 		return {
 			selectors: {
@@ -2002,7 +2057,7 @@ ImageCarouselHandler = HandlerModule.extend({
 	},
 
 	onInit: function onInit() {
-		HandlerModule.prototype.onInit.apply(this, arguments);
+		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
 
 		var elementSettings = this.getElementSettings(),
 		    slidesToShow = +elementSettings.slides_to_show || 3,
@@ -2046,21 +2101,18 @@ ImageCarouselHandler = HandlerModule.extend({
 });
 
 module.exports = function ($scope) {
-	new ImageCarouselHandler({ $element: $scope });
+	elementorFrontend.elementsHandler.addHandler(ImageCarouselHandler, { $element: $scope });
 };
 
 /***/ }),
 
-/***/ 192:
+/***/ 193:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var HandlerModule = __webpack_require__(3),
-    TextEditor;
-
-TextEditor = HandlerModule.extend({
+var TextEditor = elementorModules.frontend.handlers.Base.extend({
 	dropCapLetter: '',
 
 	getDefaultSettings: function getDefaultSettings() {
@@ -2088,10 +2140,6 @@ TextEditor = HandlerModule.extend({
 			$dropCap: $dropCap,
 			$dropCapLetter: $dropCapLetter
 		};
-	},
-
-	getElementName: function getElementName() {
-		return 'text-editor';
 	},
 
 	wrapDropCap: function wrapDropCap() {
@@ -2143,7 +2191,7 @@ TextEditor = HandlerModule.extend({
 	},
 
 	onInit: function onInit() {
-		HandlerModule.prototype.onInit.apply(this, arguments);
+		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
 
 		this.wrapDropCap();
 	},
@@ -2156,53 +2204,54 @@ TextEditor = HandlerModule.extend({
 });
 
 module.exports = function ($scope) {
-	new TextEditor({ $element: $scope });
+	elementorFrontend.elementsHandler.addHandler(TextEditor, { $element: $scope });
 };
 
 /***/ }),
 
-/***/ 193:
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var HandlerModule = __webpack_require__(3),
-    GlobalHandler;
-
-GlobalHandler = HandlerModule.extend({
-	getElementName: function getElementName() {
+var GlobalHandler = elementorModules.frontend.handlers.Base.extend({
+	getWidgetType: function getWidgetType() {
 		return 'global';
 	},
 	animate: function animate() {
 		var $element = this.$element,
-		    animation = this.getAnimation(),
-		    elementSettings = this.getElementSettings(),
+		    animation = this.getAnimation();
+
+		if ('none' === animation) {
+			$element.removeClass('elementor-invisible');
+			return;
+		}
+
+		var elementSettings = this.getElementSettings(),
 		    animationDelay = elementSettings._animation_delay || elementSettings.animation_delay || 0;
 
 		$element.removeClass(animation);
 
+		if (this.currentAnimation) {
+			$element.removeClass(this.currentAnimation);
+		}
+
+		this.currentAnimation = animation;
+
 		setTimeout(function () {
-			$element.removeClass('elementor-invisible').addClass(animation);
+			$element.removeClass('elementor-invisible').addClass('animated ' + animation);
 		}, animationDelay);
 	},
 	getAnimation: function getAnimation() {
-		var elementSettings = this.getElementSettings();
-
-		return elementSettings.animation || elementSettings._animation;
+		return this.getCurrentDeviceSetting('animation') || this.getCurrentDeviceSetting('_animation');
 	},
 	onInit: function onInit() {
-		HandlerModule.prototype.onInit.apply(this, arguments);
+		elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
 
-		var animation = this.getAnimation();
-
-		if (!animation) {
-			return;
+		if (this.getAnimation()) {
+			elementorFrontend.waypoint(this.$element, this.animate.bind(this));
 		}
-
-		this.$element.removeClass(animation);
-
-		elementorFrontend.waypoint(this.$element, this.animate.bind(this));
 	},
 	onElementChange: function onElementChange(propertyName) {
 		if (/^_?animation/.test(propertyName)) {
@@ -2212,12 +2261,12 @@ GlobalHandler = HandlerModule.extend({
 });
 
 module.exports = function ($scope) {
-	new GlobalHandler({ $element: $scope });
+	elementorFrontend.elementsHandler.addHandler(GlobalHandler, { $element: $scope });
 };
 
 /***/ }),
 
-/***/ 194:
+/***/ 195:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2272,7 +2321,7 @@ module.exports = elementorModules.ViewModule.extend({
 
 /***/ }),
 
-/***/ 195:
+/***/ 196:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2359,7 +2408,7 @@ module.exports = elementorModules.ViewModule.extend({
 
 /***/ }),
 
-/***/ 196:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2454,9 +2503,7 @@ module.exports = elementorModules.ViewModule.extend({
 		modal.onShow = function () {
 			DialogsManager.getWidgetType('lightbox').prototype.onShow.apply(modal, arguments);
 
-			setTimeout(function () {
-				self.setEntranceAnimation();
-			}, 10);
+			self.setEntranceAnimation();
 		};
 
 		modal.onHide = function () {
@@ -2663,7 +2710,7 @@ module.exports = elementorModules.ViewModule.extend({
 	},
 
 	setEntranceAnimation: function setEntranceAnimation(animation) {
-		animation = animation || this.getSettings('modalOptions.entranceAnimation');
+		animation = animation || elementorFrontend.getCurrentDeviceSetting(this.getSettings('modalOptions'), 'entranceAnimation');
 
 		var $widgetMessage = this.getModal().getElements('message');
 
@@ -2795,221 +2842,10 @@ module.exports = elementorModules.ViewModule.extend({
 		elementorFrontend.elements.$document.on('click', this.getSettings('selectors.links'), this.openLink);
 	},
 
-	onInit: function onInit() {
-		elementorModules.ViewModule.prototype.onInit.apply(this, arguments);
-
-		if (elementorFrontend.isEditMode()) {
-			elementor.settings.general.model.on('change', this.onGeneralSettingsChange);
-		}
-	},
-
-	onGeneralSettingsChange: function onGeneralSettingsChange(model) {
-		if ('elementor_lightbox_content_animation' in model.changed) {
-			this.setSettings('modalOptions.entranceAnimation', model.changed.elementor_lightbox_content_animation);
-
-			this.setEntranceAnimation();
-		}
-	},
-
 	onSlideChange: function onSlideChange() {
 		this.getSlide('prev').add(this.getSlide('next')).add(this.getSlide('active')).find('.' + this.getSettings('classes.videoWrapper')).remove();
 
 		this.playSlideVideo();
-	}
-});
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = elementorModules.ViewModule.extend({
-	$element: null,
-
-	editorListeners: null,
-
-	onElementChange: null,
-
-	onEditSettingsChange: null,
-
-	onGeneralSettingsChange: null,
-
-	onPageSettingsChange: null,
-
-	isEdit: null,
-
-	__construct: function __construct(settings) {
-		this.$element = settings.$element;
-
-		this.isEdit = this.$element.hasClass('elementor-element-edit-mode');
-
-		if (this.isEdit) {
-			this.addEditorListeners();
-		}
-	},
-
-	findElement: function findElement(selector) {
-		var $mainElement = this.$element;
-
-		return $mainElement.find(selector).filter(function () {
-			return jQuery(this).closest('.elementor-element').is($mainElement);
-		});
-	},
-
-	getUniqueHandlerID: function getUniqueHandlerID(cid, $element) {
-		if (!cid) {
-			cid = this.getModelCID();
-		}
-
-		if (!$element) {
-			$element = this.$element;
-		}
-
-		return cid + $element.attr('data-element_type') + this.getConstructorID();
-	},
-
-	initEditorListeners: function initEditorListeners() {
-		var self = this;
-
-		self.editorListeners = [{
-			event: 'element:destroy',
-			to: elementor.channels.data,
-			callback: function callback(removedModel) {
-				if (removedModel.cid !== self.getModelCID()) {
-					return;
-				}
-
-				self.onDestroy();
-			}
-		}];
-
-		if (self.onElementChange) {
-			var elementName = self.getElementName(),
-			    eventName = 'change';
-
-			if ('global' !== elementName) {
-				eventName += ':' + elementName;
-			}
-
-			self.editorListeners.push({
-				event: eventName,
-				to: elementor.channels.editor,
-				callback: function callback(controlView, elementView) {
-					var elementViewHandlerID = self.getUniqueHandlerID(elementView.model.cid, elementView.$el);
-
-					if (elementViewHandlerID !== self.getUniqueHandlerID()) {
-						return;
-					}
-
-					self.onElementChange(controlView.model.get('name'), controlView, elementView);
-				}
-			});
-		}
-
-		if (self.onEditSettingsChange) {
-			self.editorListeners.push({
-				event: 'change:editSettings',
-				to: elementor.channels.editor,
-				callback: function callback(changedModel, view) {
-					if (view.model.cid !== self.getModelCID()) {
-						return;
-					}
-
-					self.onEditSettingsChange(Object.keys(changedModel.changed)[0]);
-				}
-			});
-		}
-
-		['page', 'general'].forEach(function (settingsType) {
-			var listenerMethodName = 'on' + settingsType[0].toUpperCase() + settingsType.slice(1) + 'SettingsChange';
-
-			if (self[listenerMethodName]) {
-				self.editorListeners.push({
-					event: 'change',
-					to: elementor.settings[settingsType].model,
-					callback: function callback(model) {
-						self[listenerMethodName](model.changed);
-					}
-				});
-			}
-		});
-	},
-
-	getEditorListeners: function getEditorListeners() {
-		if (!this.editorListeners) {
-			this.initEditorListeners();
-		}
-
-		return this.editorListeners;
-	},
-
-	addEditorListeners: function addEditorListeners() {
-		var uniqueHandlerID = this.getUniqueHandlerID();
-
-		this.getEditorListeners().forEach(function (listener) {
-			elementorFrontend.addListenerOnce(uniqueHandlerID, listener.event, listener.callback, listener.to);
-		});
-	},
-
-	removeEditorListeners: function removeEditorListeners() {
-		var uniqueHandlerID = this.getUniqueHandlerID();
-
-		this.getEditorListeners().forEach(function (listener) {
-			elementorFrontend.removeListeners(uniqueHandlerID, listener.event, null, listener.to);
-		});
-	},
-
-	getElementName: function getElementName() {
-		return this.$element.data('element_type').split('.')[0];
-	},
-
-	getID: function getID() {
-		return this.$element.data('id');
-	},
-
-	getModelCID: function getModelCID() {
-		return this.$element.data('model-cid');
-	},
-
-	getElementSettings: function getElementSettings(setting) {
-		var elementSettings = {},
-		    modelCID = this.getModelCID();
-
-		if (this.isEdit && modelCID) {
-			var settings = elementorFrontend.config.elements.data[modelCID],
-			    settingsKeys = elementorFrontend.config.elements.keys[settings.attributes.widgetType || settings.attributes.elType];
-
-			jQuery.each(settings.getActiveControls(), function (controlKey) {
-				if (-1 !== settingsKeys.indexOf(controlKey)) {
-					elementSettings[controlKey] = settings.attributes[controlKey];
-				}
-			});
-		} else {
-			elementSettings = this.$element.data('settings') || {};
-		}
-
-		return this.getItems(elementSettings, setting);
-	},
-
-	getEditSettings: function getEditSettings(setting) {
-		var attributes = {};
-
-		if (this.isEdit) {
-			attributes = elementorFrontend.config.elements.editSettings[this.getModelCID()].attributes;
-		}
-
-		return this.getItems(attributes, setting);
-	},
-
-	onDestroy: function onDestroy() {
-		this.removeEditorListeners();
-
-		if (this.unbindEvents) {
-			this.unbindEvents();
-		}
 	}
 });
 
