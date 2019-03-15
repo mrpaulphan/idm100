@@ -54,4 +54,6 @@ https://ps.w.org/wordpress-seo/assets/screenshot-1.png?rev=1550389
 
 **What to submit**
 
-Submit a link to your website. Your site must be **live** and **public**. DOUBLE CHECK YOUR LINK IN A PRIVATE WINDOW to make sure it's live
+Submit a link to your website. Your site must be **live** and **public**. DOUBLE CHECK YOUR LINK IN A PRIVATE WINDOW to make sure it's live! 
+
+[HOW TO MAKE YOUR SITE LIVE WITH BLUEHOST](https://d.pr/nXB1OH)
