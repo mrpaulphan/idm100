@@ -3,7 +3,20 @@
 Register a domain and hosting plan with a provider of your choice. 
 You can use **any** hosting provider you want but you must be able to install WordPress on that server (Check with the hosting company). I recommend you use Bluehost as the company you use to provide you with web hosting. I will be using Bluehost to demonstrate how to install WordPress throughout the year and will not be able to help you if you run into hosting issues outside of bluehost. [Sign up for Bluehost here](https://www.bluehost.com/track/mrpaulphan)
 
-**DO NOT SIGN UP WITH YOUR DREXEL EMAIL!** 
+**Some Web Hosting Providers**
+- [Blue Host](https://www.bluehost.com/track/mrpaulphan)
+- [InMotion](https://www.inmotionhosting.com/)
+- [Go Daddy](https://www.godaddy.com/)
+- [HostGator](https://www.hostgator.com/)
+
+**Web Hosting Providers you can NOT use for this class**
+The following hosting providers do not allow you to manage your server. We will need to be able to access the server and manipulate files. We can not do this on the following services:
+- [Wordpress.com](https://wordpress.com/)
+- [Wix](https://www.wix.com/)
+- [Square Space](https://www.squarespace.com/?)
+
+
+**DO NOT SIGN UP WITH YOUR DREXEL EMAIL!**
 
 We've ran into many issues in the past using your school email address. Outlook will block the URL and give you issues receiving your activation email from Bluehost. I recommend you use an alternative email address. 
 
