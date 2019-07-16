@@ -1,2 +1,3 @@
 assets/*
+!assets/w03-ux-ui.jpeg
 /demo/wp-config.php
