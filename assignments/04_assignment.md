@@ -37,7 +37,6 @@ You will be giving a short (3 minutes or less) presentation focused on your them
 - Points to consider during your presentation
 
 ## Submitting Work
-Submit your site inspiration presentation + a link (clickable) to your registered domain (Drop link in the comment section) via blackboard.
 
 You will upload your primary asset file, preferably a MS PowerPoint file, to BBLearn prior to the assignment due date/time. If you need to upload more than one file, please zip the file and upload one file. Your file name should follow `idm100-hwk04s-[Drexel Username].[File Extension]` naming convention (`idm100-hwk04s-pp455.zip`). 
 
