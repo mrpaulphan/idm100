@@ -4,14 +4,13 @@ Based on the sitemap you created, create/submit the following links to your webs
 
 - Individual links to all of the pages your created (Reference our sitemap)
 
-
 Example:
-
+~~~
+Media
 Site Map: https://mrpaulphan.com/wp-content/uploads/2018/03/aaaaa.png
 
-**Pages**
-
+Main pages from the sitemap
 Home Page: https://mrpaulphan.com
-
 About Page: https://mrpaulphan.com/about
-
+Contact Page: https://mrpaulphan.com/about
+~~~
